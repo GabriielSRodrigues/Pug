@@ -2,7 +2,11 @@
     "name": "teste",
     "author": "Gabriel",
     "description": "a boiler",
-    "scripts": {},
+    "scripts": {
+        "build": "npm-run-all --sequential build:views",
+        "build:views":"pug src/views/ --out public/ --pretty",     
+        "start": "npm-run-all -- sequential build"
+    },
     "devDependencies": {
         "@babel/cli": "^7.1.5",
         "@babel/core": "^7.1.5",
