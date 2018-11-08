@@ -1,0 +1,14 @@
+{
+    "name": "teste",
+    "author": "Gabriel",
+    "description": "a boiler",        
+    "scripts": {
+        
+    },
+    "devDependencies": {
+        
+    },
+    "dependencies": {
+        
+    }
+}
