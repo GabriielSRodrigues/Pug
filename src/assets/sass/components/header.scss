@@ -1,0 +1,13 @@
+$main-color: red;
+$active-color: black;
+
+a{
+    color: $main-color;
+
+    &.active{
+      color: $active-color;     
+
+    }
+}   
+
+        
