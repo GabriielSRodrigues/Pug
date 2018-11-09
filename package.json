@@ -3,13 +3,22 @@
     "author": "Gabriel",
     "description": "a boiler",
     "scripts": {
-        "build": "npm-run-all --sequential build:views",
-        "build:views":"pug src/views/ --out public/ --pretty",     
-        "start": "npm-run-all -- sequential build"
+        "watch": "npm-run-all --parallel watch:views watch:sass watch:js",
+        "watch:views": "chokidar src/views/ --command \"npm run build:views\"",
+        "watch:sass": "chokidar src/assets/sass/ --command \"npm run build:sass\"",
+        "watch:js": "chokidar src/assets/js/ --command \"npm run build:js\"",
+        "build": "npm-run-all --sequential build:views build:sass build:js",
+        "build:views": "pug src/views/ --out public/ --pretty",
+        "build:sass": "node-sass src/assets/sass/main.scss public/css/main.css",
+        "build:js": "eslint src/assets/js/*.js & babel src/assets/js/main.js --out-file public/js/main.js",
+        "server": "browser-sync start --server \"public\" --files \"public\"",
+        "start": "npm-run-all build --parallel watch server"
     },
     "devDependencies": {
         "@babel/cli": "^7.1.5",
         "@babel/core": "^7.1.5",
+        "@babel/preset-env": "^7.1.5",
+        "browser-sync": "^2.26.3",
         "chokidar-cli": "^1.2.1",
         "eslint": "^5.8.0",
         "node-sass": "^4.10.0",
